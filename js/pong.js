@@ -54,7 +54,7 @@ class Pong {
     this._accumulator = 0;
     this.step = 1/120;
 
-    this.singlePlayer;
+    this.singlePlayer = true;
     this.multiPlayer;
 
     this.ball = new Ball;
@@ -160,9 +160,9 @@ class Pong {
     this.ball.vel.x = 0;
     this.ball.vel.y = 0;
 
-    this.players.forEach(player => {
-      if (player.score === 15) {
-        this.gameover();
+    this.players.forEach((player, index) => {
+      if (player.score === 3) {
+        this.gameover(index);
       }
     })
   }
@@ -203,8 +203,11 @@ class Pong {
       this._accumulator -= this.step;
     }
   }
-  gameover() {
-
+  gameover(playerId) {
+    console.log("Player " + (playerId + 1) + " Wins!");
+    this.players.forEach(player => {
+      player.score = 0;
+    });
   }
 }
 
