@@ -1,0 +1,51 @@
+body {
+  background: #202020;
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+}
+canvas {
+  display: block;
+  border: solid 1px #fff;
+  border-left: none;
+  border-right: none;
+  box-sizing: border-box;
+  height: inherit;
+}
+div.game {
+  position: relative;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+div.container {
+  display: block;
+  color: #fff;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  margin: 0 auto;
+  background: rgba(20,20,20,0.9);
+}
+
+div.game h3 {
+  display: inline;
+  padding: 20px;
+}
+
+div.menu h1 {
+  padding: 30px;
+}
+
+div.player-options {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  height: auto;
+}
+
+div.hidden {
+  display: none;
+}
