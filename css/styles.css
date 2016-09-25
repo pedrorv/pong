@@ -24,10 +24,16 @@ div.container {
   display: block;
   color: #fff;
   position: absolute;
-  top: 30%;
-  left: 40%;
-  margin: 0 auto;
+  top: 35%;
+  left: 0;
+  width: 100%;
+}
+
+div.menu {
+  position: relative;
+  margin-left: 0 auto;
   background: rgba(20,20,20,0.9);
+  display: inline-block;
 }
 
 div.game h3 {
