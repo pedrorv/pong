@@ -57,6 +57,9 @@ class Pong {
     this.singlePlayer;
     this.multiPlayer;
     this.startCondition;
+    this.keyboardMode;
+    this.mouseMode;
+    this.keys = {};
 
     this.ball = new Ball;
 
@@ -187,6 +190,21 @@ class Pong {
       this.ball.vel.y = -this.ball.vel.y;
     }
 
+    if (pong.multiPlayer || (pong.singlePlayer && pong.keyboardMode)) {
+        if (pong.keys["ArrowDown"]) {
+          pong.players[0].pos.y += 5;
+        }
+        if (pong.keys["ArrowUp"]) {
+          pong.players[0].pos.y -= 5;
+        }
+        if (pong.keys["Enter"] && pong.startCondition) {
+          pong.start();
+        }
+        if (pong.keys["Escape"]) {
+          // Implement new menu
+        }
+    }
+
     if (this.singlePlayer) {
       this.players[1].pos.y = this.ball.pos.y;
     }
@@ -221,8 +239,12 @@ const pong = new Pong(canvas);
 
 canvas.addEventListener("mousemove", event => {
   const scale = event.offsetY / event.target.getBoundingClientRect().height;
-
-  pong.players[0].pos.y = canvas.height * scale;
+  if (pong.singlePlayer && pong.mouseMode) {
+    pong.players[0].pos.y = canvas.height * scale;
+  }
+  if (pong.multiPlayer) {
+    pong.players[1].pos.y = canvas.height * scale;
+  }
 });
 
 canvas.addEventListener("click", event => {
@@ -231,11 +253,14 @@ canvas.addEventListener("click", event => {
   }
 });
 
-canvas.addEventListener("keydown", event => {
+window.addEventListener("keyup", event => {
   const keyName = event.key;
 
-  if (pong.multiPlayer) {
+  pong.keys[keyName] = false;
+});
 
+window.addEventListener("keydown", event => {
+  const keyName = event.key;
 
-  }
+  pong.keys[keyName] = true;
 });

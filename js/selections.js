@@ -38,6 +38,8 @@ $("h3.keyboard-selector").on("click", function() {
   if ($("div.start").hasClass("hidden")) {
     $("div.start").toggleClass("hidden");
   }
+  pong.keyboardMode = true;
+  pong.mouseMode = false;
 });
 
 $("h3.mouse-selector").on("click", function() {
@@ -51,6 +53,8 @@ $("h3.mouse-selector").on("click", function() {
   if ($("div.start").hasClass("hidden")) {
     $("div.start").toggleClass("hidden");
   }
+  pong.keyboardMode = false;
+  pong.mouseMode = true;
 });
 
 $("h3.start-game").on("click", function() {
