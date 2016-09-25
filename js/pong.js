@@ -124,8 +124,32 @@ class Pong {
           const len = ball.vel.len;
           ball.vel.x = -ball.vel.x;
           ball.vel.y += 300 * (Math.random() - 0.5);
-          ball.vel.len = len * 1.1;
+          ball.vel.len = (len < 1000) ? len * 1.1 : len;
         }
+  }
+  movePlayers() {
+    if (this.multiPlayer || (this.singlePlayer && this.keyboardMode)) {
+        if (this.keys["ArrowDown"]) {
+          if (this.players[0].bottom < this._canvas.height) {
+            this.players[0].pos.y += 5;
+          }
+        }
+        if (this.keys["ArrowUp"]) {
+          if (this.players[0].top > 0) {
+            this.players[0].pos.y -= 5;
+          }
+        }
+        if (this.keys["Enter"] && this.startCondition) {
+          this.start();
+        }
+        if (this.keys["Escape"]) {
+          // Implement new menu
+        }
+    }
+
+    if (this.singlePlayer) {
+      this.players[1].pos.y = this.ball.pos.y;
+    }
   }
   draw() {
     this._context.fillStyle = "#000";
@@ -190,24 +214,7 @@ class Pong {
       this.ball.vel.y = -this.ball.vel.y;
     }
 
-    if (pong.multiPlayer || (pong.singlePlayer && pong.keyboardMode)) {
-        if (pong.keys["ArrowDown"]) {
-          pong.players[0].pos.y += 5;
-        }
-        if (pong.keys["ArrowUp"]) {
-          pong.players[0].pos.y -= 5;
-        }
-        if (pong.keys["Enter"] && pong.startCondition) {
-          pong.start();
-        }
-        if (pong.keys["Escape"]) {
-          // Implement new menu
-        }
-    }
-
-    if (this.singlePlayer) {
-      this.players[1].pos.y = this.ball.pos.y;
-    }
+    this.movePlayers();
 
     this.players.forEach(player => {
       this.collide(player, this.ball);
