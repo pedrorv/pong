@@ -10,11 +10,11 @@ canvas {
   border-left: none;
   border-right: none;
   box-sizing: border-box;
+  width: 100%;
   height: inherit;
 }
 div.game {
   position: relative;
-  height: 100vh;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -31,19 +31,33 @@ div.container {
 }
 
 div.game h3 {
-  display: inline;
-  padding: 20px;
+  display: inline-block;
+  padding: 10px;
+  margin: 0;
+  margin: 0 10px 10px 0;
+  cursor: pointer;
+}
+
+div.game h3:hover {
+  background-color: #FF0000;
+}
+
+div.game h3.selected {
+  background-color: #FF0000;
 }
 
 div.menu h1 {
   padding: 30px;
 }
 
-div.player-options {
-  display: block;
+h4 {
+  padding: 5px 20px;
+}
+
+div.player-options, div.controller-options {
+  display: table;
   position: relative;
   margin: 0 auto;
-  height: auto;
 }
 
 div.hidden {

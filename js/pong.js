@@ -54,8 +54,9 @@ class Pong {
     this._accumulator = 0;
     this.step = 1/120;
 
-    this.singlePlayer = true;
+    this.singlePlayer;
     this.multiPlayer;
+    this.startCondition;
 
     this.ball = new Ball;
 
@@ -225,7 +226,9 @@ canvas.addEventListener("mousemove", event => {
 });
 
 canvas.addEventListener("click", event => {
-  pong.start();
+  if (pong.startCondition) {
+    pong.start();
+  }
 });
 
 canvas.addEventListener("keydown", event => {
