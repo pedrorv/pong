@@ -146,9 +146,13 @@ class Pong {
           // Implement new menu
         }
     }
-
-    if (this.singlePlayer) {
-      this.players[1].pos.y = this.ball.pos.y;
+  }
+  moveComputer() {
+    if ((this.ball.pos.y < this.players[1].top) && this.players[1].top > 0 && this.ball.vel.x > 0) {
+      this.players[1].pos.y -= 3;
+    }
+    if ((this.ball.pos.y > this.players[1].bottom) && this.players[1].bottom < this._canvas.height && this.ball.vel.x > 0) {
+      this.players[1].pos.y += 3;
     }
   }
   draw() {
@@ -215,6 +219,9 @@ class Pong {
     }
 
     this.movePlayers();
+    if (this.singlePlayer) {
+      this.moveComputer();
+    }
 
     this.players.forEach(player => {
       this.collide(player, this.ball);
